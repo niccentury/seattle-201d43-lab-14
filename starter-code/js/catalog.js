@@ -16,7 +16,6 @@ function populateForm() {
     option.innerHTML = Product.allProducts[i].name;
     selectElement.appendChild(option);
   }
-
 }
 
 // When someone submits the form, we need to add the selected item to the cart
@@ -25,7 +24,7 @@ function populateForm() {
 function handleSubmit(event) {
 
   // TODO: Prevent the page from reloading
-
+  event.preventDefault();
   // Do all the things ...
   addSelectedItemToCart();
   cart.saveToLocalStorage();
@@ -37,17 +36,44 @@ function handleSubmit(event) {
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
   // TODO: suss out the item picked from the select list
+  var selectedProduct = event.target.items.value;
+
   // TODO: get the quantity
+  var productQuantity = event.target.quantity.value;
   // TODO: using those, add one item to the Cart
+  cart.addItem(selectedProduct, productQuantity);
+  console.log(cart);
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
+function updateCounter() {
+  var productQuantity = event.target.quantity.value;
+  counter += parseInt(productQuantity);
+  var countDiv = document.getElementById('itemCount');
+  countDiv.innerHTML = counter;
+}
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
   // TODO: Get the item and quantity from the form
+  var selectedProduct = event.target.items.value;
+  var productQuantity = event.target.quantity.value;
   // TODO: Add a new element to the cartContents div with that information
+  var cartContent = document.getElementById('cartContents');
+  for(var j=0; j<Product.allProducts.length; j++){
+    if(selectedProduct === Product.allProducts[j].name){
+      var imageFilePath = Product.allProducts[j].filePath;
+      console.log('imagefilepath',imageFilePath);
+      var newContent = document.createElement('div');
+      var newImage = document.createElement('img');
+      var newQuantity = document.createElement('p');
+      newQuantity.innerHTML = 'Quantity: '+productQuantity;
+      newImage.src = imageFilePath;
+      newContent.appendChild(newImage);
+      newContent.appendChild(newQuantity);
+      cartContent.appendChild(newContent);
+    }
+  }
 }
 
 // Set up the "submit" event listener on the form.

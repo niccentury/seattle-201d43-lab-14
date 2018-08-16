@@ -47,7 +47,10 @@ function addSelectedItemToCart() {
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
-  counter++;
+  var productQuantity = event.target.quantity.value;
+  counter += parseInt(productQuantity);
+  var countDiv = document.getElementById('itemCount');
+  countDiv.innerHTML = counter;
 }
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
@@ -63,8 +66,12 @@ function updateCartPreview() {
       console.log('imagefilepath',imageFilePath);
       var newContent = document.createElement('div');
       var newImage = document.createElement('img');
+      var newQuantity = document.createElement('p');
+      newQuantity.innerHTML = 'Quantity: '+productQuantity;
       newImage.src = imageFilePath;
-      cartContent.appendChild(newContent.appendChild(newImage));
+      newContent.appendChild(newImage);
+      newContent.appendChild(newQuantity);
+      cartContent.appendChild(newContent);
     }
   }
 }

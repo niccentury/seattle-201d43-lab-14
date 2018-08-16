@@ -1,4 +1,5 @@
 'use strict';
+var counter = 0;
 
 // Cart constructor.
 var Cart = function(items) {
@@ -9,10 +10,15 @@ var Cart = function(items) {
 Cart.prototype.addItem = function(product, quantity) {
   console.log('IN THE CART', product, quantity);
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+  console.log('in the cart ',product, quantity);
+  var item = new CartItem(product, quantity);
+  this.items.push(item);
 };
 
 Cart.prototype.saveToLocalStorage = function() {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  console.log('This', this);
+  localStorage.setItem('item', JSON.stringify(this));
 };
 
 Cart.prototype.removeItem = function(item) {

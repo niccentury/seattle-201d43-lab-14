@@ -11,8 +11,10 @@ function populateForm() {
 
   //TODO: Add an <option> tag inside the form's select for each product
   var selectElement = document.getElementById('items');
-  for (var i of Product.allProducts) {
-
+  for (var i = 0; i< Product.allProducts.length; i++) {
+    var option = document.createElement('option');
+    option.innerHTML = Product.allProducts[i].name;
+    selectElement.appendChild(option);
   }
 
 }

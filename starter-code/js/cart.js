@@ -46,11 +46,7 @@ function showCart() {
     fillCartItem.appendChild(quantity);
     fillCartItem.appendChild(items);
     tBody.appendChild(fillCartItem);
-
   }
-
-
-
 
   // TODO: Find the table body
 
@@ -62,6 +58,8 @@ function showCart() {
 }
 
 function removeItemFromCart(event) {
+  var clickRemove = document;
+  cart.removeItem;
 
 
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
